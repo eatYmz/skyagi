@@ -21,7 +21,7 @@ ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
 # 运行 SkyAGI 配置命令 (假设有一个 `skyagi config set` 或其他命令)
 # 将此部分替换为实际的配置命令
-# RUN skyagi config set --key $OPENAI_API_KEY
+RUN skyagi config set --key $OPENAI_API_KEY
 
 # 启动 SkyAGI
 CMD ["sh", "-c", "skyagi"]
