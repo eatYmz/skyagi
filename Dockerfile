@@ -13,11 +13,16 @@ RUN apt-get update && apt-get install -y \
 # 安装 SkyAGI
 RUN pip install --no-cache-dir --upgrade skyagi
 
-# 暴露端口号（如果需要的话）
-EXPOSE 3010
+# 下载示例代理配置文件（如有必要）
+RUN apt-get install -y git && \
+    git clone https://github.com/litanlitudan/skyagi.git /app/skyagi && \
+    cp -r /app/skyagi/examples /app/examples
 
-# 将 Coolify 中的环境变量设置为 OPENAI_API_KEY
+# 设置环境变量（Coolify 将自动设置 OPENAI_API_KEY）
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
-# 启动 SkyAGI 并运行配置
-CMD ["sh", "-c", "skyagi config init && skyagi"]
+# 暴露端口（如有必要）
+EXPOSE 3010
+
+# 启动 SkyAGI
+CMD ["sh", "-c", "skyagi"]
