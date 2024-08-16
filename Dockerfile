@@ -19,8 +19,5 @@ EXPOSE 3010
 # 将 Coolify 中的环境变量设置为 OPENAI_API_KEY
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
-# 运行 SkyAGI 配置命令
-RUN skyagi config --default
-
-# 启动 SkyAGI
-CMD ["sh", "-c", "skyagi"]
+# 启动 SkyAGI 并运行配置
+CMD ["sh", "-c", "skyagi config init && skyagi"]
